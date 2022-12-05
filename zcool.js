@@ -74,7 +74,9 @@
 
       const name = `${titleDom.innerText}-${authDom.innerText}`
       const content = `${titleDom.innerText}\n作者：${authDom.innerText}\n链接：${window.location.href}\n${timeDom.getAttribute('title')}\n${hotDom.getAttribute('title')}`
-      fCom.dowloadZip({ src: srcs, JsZip: JSZip, fileName: `${name}.zip`, otherFiles: [{ fileName: `${name}.txt`, content }], removeParams: false }).then(() => {
+      const removeParams = !!JSON.parse(localStorage.getItem('greascript_zcool_removeParams'))
+
+      fCom.dowloadZip({ src: srcs, JsZip: JSZip, fileName: `${name}.zip`, otherFiles: [{ fileName: `${name}.txt`, content }], removeParams }).then(() => {
         dlBtn.innerText = '下载'
         console.log('下载 successed')
         dowloading = false
